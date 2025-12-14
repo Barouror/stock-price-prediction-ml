@@ -1,49 +1,42 @@
 # GOOGLE STOCK SENTIMENT AI
 
-📈 GOOGLE_STOCK_AI
+📈 **GOOGLE_STOCK_AI**
+Dự đoán xu hướng giá cổ phiếu **Google (GOOGL)** bằng **Machine Learning** kết hợp **Sentiment Analysis** từ tin tức.
 
-Dự đoán xu hướng giá cổ phiếu Google (GOOGL) bằng Machine Learning kết hợp Sentiment Analysis từ tin tức
+---
 
-🎯 Mục tiêu đề tài
+## 🎯 Mục tiêu đề tài
 
-Đồ án nhằm xây dựng một pipeline hoàn chỉnh để:
+Đề tài xây dựng một **pipeline Machine Learning hoàn chỉnh** nhằm:
 
-Thu thập dữ liệu giá cổ phiếu Google
+* Thu thập dữ liệu giá cổ phiếu Google (GOOGL)
+* Crawl và xử lý tin tức tài chính từ **GDELT**
+* Phân tích cảm xúc (Sentiment Analysis)
+* Kết hợp dữ liệu **giá + tin tức**
+* Trích xuất đặc trưng (Feature Engineering)
+* Huấn luyện mô hình Machine Learning
+* Đánh giá và dự đoán xu hướng giá cổ phiếu
 
-Crawl và xử lý tin tức (GDELT)
+---
 
-Phân tích cảm xúc (sentiment analysis)
+## 🧠 Công nghệ sử dụng
 
-Kết hợp dữ liệu giá + tin tức
+* **Python 3.10**
+* **Pandas**, **NumPy**
+* **XGBoost**, **LightGBM**
+* **Scikit-learn**
+* **Matplotlib**
+* **GDELT API**
+* **PhoBERT** (Sentiment model)
+* GPU support (CUDA – nếu có)
 
-Trích xuất đặc trưng (feature engineering)
+---
 
-Huấn luyện mô hình Machine Learning (XGBoost, LightGBM)
+## 📂 Cấu trúc thư mục dự án
 
-Đánh giá và dự đoán xu hướng giá cổ phiếu
+Cấu trúc project được tổ chức theo pipeline: **thu thập dữ liệu → tiền xử lý → huấn luyện → đánh giá → dự đoán**.
 
-🧠 Công nghệ sử dụng
-
-Python 3.10
-
-Pandas, NumPy
-
-XGBoost, LightGBM
-
-Scikit-learn
-
-Matplotlib
-
-GDELT API
-
-PhoBERT / Sentiment model
-
-GPU support (CUDA – nếu có)
-
-📂 Cấu trúc thư mục dự án
-
-Cấu trúc hiện tại của project được tổ chức theo pipeline xử lý dữ liệu → huấn luyện → đánh giá → lưu model.
-
+```
 GOOGLE_STOCK_AI/
 │
 ├── data/                       # Dữ liệu CSV qua từng bước xử lý
@@ -57,27 +50,23 @@ GOOGLE_STOCK_AI/
 │   └── feature_dataset.csv
 │
 ├── models_xgboost/             # Model XGBoost & scaler
-│   ├── google_xgb_model.pkl
 │   ├── xgb_model.pkl
 │   ├── xgb_model.json
-│   ├── xgb_model_overfit_protected.json
 │   ├── xgb_scaler.pkl
-│   ├── xgb_timeseries_scaler.pkl
 │   ├── feature_columns.pkl
 │   └── feature_importance.png
 │
-├── model_lgbm/                 # Model LightGBM
-│   ├── best_model.pkl
+├── model_lgbm/                 # Model LightGBM (baseline)
 │   └── lgbm_stock_model.pkl
 │
 ├── output/                     # Output trung gian / feature importance
 │   └── feature_importance.csv
 │
-├── reports/                    # Báo cáo, hình ảnh, kết quả đánh giá
+├── reports/                    # Báo cáo & hình ảnh đánh giá
 │
 ├── src/                        # Source code chính
-│   ├── crawl_gdelt.py          # Crawl tin tức từ GDELT
 │   ├── download_price.py       # Tải dữ liệu giá cổ phiếu
+│   ├── crawl_gdelt.py          # Crawl tin tức từ GDELT
 │   ├── preprocess_gdelt.py     # Làm sạch dữ liệu news
 │   ├── preprocess_sentiment.py # Chuẩn bị dữ liệu sentiment
 │   ├── sentiment_phobert.py    # Phân tích cảm xúc
@@ -85,57 +74,58 @@ GOOGLE_STOCK_AI/
 │   ├── clean_merge_data.py     # Clean & aggregate theo ngày
 │   ├── features_engineering.py # Trích xuất feature kỹ thuật
 │   ├── train_xgboost.py        # Huấn luyện XGBoost
-│   ├── train_model.py          # Pipeline huấn luyện
 │   ├── evaluate_xgboost.py     # Đánh giá mô hình
-│   └── predict_price.py        # Dự đoán giá / xu hướng
-│
-├── .vscode/
-│   └── settings.json
+│   └── predict_price.py        # Dự đoán xu hướng giá
 │
 ├── README.md
 └── requirements.txt
+```
 
-🗺️ Pipeline xử lý dữ liệu
+---
 
-Thu thập dữ liệu
+## 🗺️ Pipeline xử lý dữ liệu
 
-Giá cổ phiếu Google
+### 1. Thu thập dữ liệu
 
-Tin tức từ GDELT
+* Dữ liệu giá cổ phiếu Google
+* Tin tức tài chính từ GDELT
 
-Tiền xử lý
+### 2. Tiền xử lý
 
-Làm sạch dữ liệu news
+* Làm sạch dữ liệu tin tức
+* Chuẩn hóa và tổng hợp sentiment theo ngày
 
-Chuẩn hóa sentiment
+### 3. Feature Engineering
 
-Feature Engineering
+* Chỉ báo kỹ thuật: MA, RSI, MACD, Volatility, Momentum, Lag features
+* Đặc trưng sentiment: mean, sum, ratio, rolling statistics
 
-Technical indicators (MA, RSI, MACD, volatility, momentum,…)
+### 4. Huấn luyện mô hình
 
-Sentiment-based features (mean, sum, ratio, rolling)
+* **XGBoost** (mô hình chính)
+* **LightGBM** (baseline so sánh)
 
-Huấn luyện mô hình
+### 5. Đánh giá & dự đoán
 
-XGBoost (GPU support)
+* Accuracy, Precision, Recall, F1-score
+* Confusion Matrix
+* Feature Importance
 
-LightGBM (baseline)
+---
 
-Đánh giá & dự đoán
+## ▶️ Cách chạy project
 
-Accuracy, Precision, Recall, F1-score
+### 1️⃣ Tạo môi trường
 
-Confusion Matrix
-
-Feature Importance
-
-▶️ Cách chạy project
-1️⃣ Tạo môi trường
+```bash
 conda create -n google_stock python=3.10
 conda activate google_stock
 pip install -r requirements.txt
+```
 
-2️⃣ Chạy pipeline
+### 2️⃣ Chạy pipeline
+
+```bash
 python src/download_price.py
 python src/crawl_gdelt.py
 python src/preprocess_gdelt.py
@@ -145,30 +135,32 @@ python src/clean_merge_data.py
 python src/features_engineering.py
 python src/train_xgboost.py
 python src/evaluate_xgboost.py
+```
 
-📊 Kết quả
+---
 
-Mô hình XGBoost đạt độ chính xác cao trên tập test
+## 📊 Kết quả
 
-Feature quan trọng nhất:
+* Mô hình **XGBoost** đạt hiệu năng tốt trên tập test
+* Các feature quan trọng nhất:
 
-Return
+  * Return
+  * Volatility
+  * Momentum
+  * Sentiment-based features
 
-Volatility
+⚠️ **Lưu ý**: Dataset có kích thước nhỏ (theo ngày), cần cẩn trọng với hiện tượng overfitting.
 
-Momentum
+---
 
-Sentiment-based features
+## 📌 Ghi chú
 
-Lưu ý: Dataset có kích thước nhỏ (theo ngày), cần cẩn trọng với overfitting.
+* Các file trung gian được giữ lại để minh họa pipeline, đúng chuẩn đồ án học thuật
+* Code sử dụng **relative path**, đảm bảo có thể chạy trên máy khác
 
-📌 Ghi chú
+---
 
-Các file trung gian (news_clean.csv, merged_data_clean.csv, …) được giữ lại để minh họa pipeline, đúng chuẩn đồ án học thuật.
+## 👤 Tác giả
 
-Đường dẫn trong code sử dụng relative path dựa trên vị trí file .py, đảm bảo chạy được trên máy khác.
-
-👤 Tác giả
-
-Phan Gia Bảo
-Đồ án môn Trí tuệ Nhân tạo / Machine Learning
+**Phan Gia Bảo**
+Đồ án mô
