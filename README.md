@@ -6,7 +6,7 @@ Dự đoán xu hướng giá cổ phiếu **Google (GOOGL)** bằng **Machine Le
 
 Link Github: https://github.com/Barouror/stock-price-prediction-ml
 
-Link report: https://docs.google.com/document/d/1JCZnQrZV_0i0pjwkaRj5WVA4El9jzdQqJUeI3qvWwLs/edit?usp=sharing
+Link report: [https://docs.google.com/document/d/1JCZnQrZV_0i0pjwkaRj5WVA4El9jzdQqJUeI3qvWwLs/edit?usp=sharing](https://docs.google.com/document/d/1OHfZRBsnWFNWIQ5IoV46I_8wTvS-3EER/edit)
 
 Link slide: 	https://www.canva.com/design/DAG7aEkvzfQ/C7Nw8SsxubG0INmZFs2-nQ/edit?utm_content=DAG7aEkvzfQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
