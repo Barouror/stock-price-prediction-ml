@@ -2,6 +2,12 @@
 
 📈 **GOOGLE_STOCK_AI**
 Dự đoán xu hướng giá cổ phiếu **Google (GOOGL)** bằng **Machine Learning** kết hợp **Sentiment Analysis** từ tin tức.
+---
+
+Link Github: https://github.com/Barouror/stock-price-prediction-ml
+Link slide: 	https://www.canva.com/design/DAG7aEkvzfQ/C7Nw8SsxubG0INmZFs2-nQ/edit?utm_content=DAG7aEkvzfQ&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+Link thuyết trình: 	
+https://youtu.be/Y8TenXPGybM
 
 ---
 
