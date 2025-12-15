@@ -33,7 +33,7 @@ https://youtu.be/Y8TenXPGybM
 
 * **Python 3.10**
 * **Pandas**, **NumPy**
-* **XGBoost**, **LightGBM**
+* **XGBoost**, **Random Forest**
 * **Scikit-learn**
 * **Matplotlib**
 * **GDELT API**
@@ -66,8 +66,8 @@ GOOGLE_STOCK_AI/
 │   ├── feature_columns.pkl
 │   └── feature_importance.png
 │
-├── model_lgbm/                 # Model LightGBM (baseline)
-│   └── lgbm_stock_model.pkl
+├── model_randomforest/                 # Model LightGBM (baseline)
+│   └── randomforestrandomforest_stock_model.pkl
 │
 ├── output/                     # Output trung gian / feature importance
 │   └── feature_importance.csv
